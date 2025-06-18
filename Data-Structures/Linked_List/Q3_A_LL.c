@@ -86,16 +86,14 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	if (ll == NULL || ll->head == NULL) return; //리스트가 비어있다면 return
 
-	if (ll == NULL || ll->head == NULL) return;
-
-	LinkedList evenList = {0,NULL};
-	LinkedList oddList = {0, NULL};
+	LinkedList evenList = {0,NULL}; //짝수 노드를 저장할 리스트
+	LinkedList oddList = {0, NULL}; //홀수 노드를 저장할 리스트
 
 	ListNode *cur = ll->head;
 
-	while(cur != NULL){
+	while(cur != NULL){				//리스트를 순회하며 짝수/홀수로 분리
 		if (cur->item %2 == 0){	
 			insertNode(&evenList, evenList.size, cur->item);
 		} else{
@@ -103,16 +101,16 @@ void moveOddItemsToBack(LinkedList *ll)
 		}
 		cur=cur->next;
 		}
-		if (evenList.size == NULL){
+		if (evenList.size == 0){	 //모든 노드가 홀수인 경우 -> oddList반환
 			ll->head = oddList.head;
 			ll->size = oddList.size;
 			return;
 		}
-		if (oddList.size == NULL){
+		if (oddList.size == 0){		 //모든 노드가 짝수인 경우 -> evenList반환
 			ll->head = evenList.head;
 			ll->size = evenList.size;
 		}
-		ListNode *tail = evenList.head;
+		ListNode *tail = evenList.head;  //evenList의 마지막 노드와 oddList를 연결
 		while (tail->next != NULL){
 				tail = tail->next;
 		}
@@ -120,7 +118,6 @@ void moveOddItemsToBack(LinkedList *ll)
 
 		ll->head = evenList.head;
 		ll->size = evenList.size + oddList.size;
-
 	}
 
 	//ll이 비어있는지 확인 비었다면 return

@@ -87,6 +87,10 @@ int main()
 void moveEvenItemsToBack(LinkedList *ll)
 {
 	/* add your code here */
+
+
+
+	//다 똑같이 하고 마지막에 
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
